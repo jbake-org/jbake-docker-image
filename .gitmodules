@@ -1,0 +1,3 @@
+[submodule "jbake"]
+	path = jbake
+	url = git@github.com:jbake-org/jbake.git
