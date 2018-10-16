@@ -1,4 +1,4 @@
-FROM anapsix/alpine-java:8_jdk as builder
+FROM openjdk:8-alpine as builder
 
 LABEL maintainer="https://jbake.org/community/team.html"
 
@@ -6,7 +6,7 @@ LABEL maintainer="https://jbake.org/community/team.html"
 ENV BUILD_DATE=03042018
 ENV JBAKE_HOME=/opt/jbake
 
-RUN mkdir ${JBAKE_HOME} 
+RUN mkdir -p ${JBAKE_HOME} 
 
 COPY jbake /usr/src/jbake
 
@@ -15,7 +15,7 @@ RUN cd /usr/src/jbake && ./gradlew installDist && cp -r jbake-dist/build/install
 
 ###############
 # Image Stage #
-FROM anapsix/alpine-java:8
+FROM openjdk:8-jre-alpine
 
 ENV JBAKE_USER=jbake
 ENV JBAKE_HOME=/opt/jbake

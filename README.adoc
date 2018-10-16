@@ -1,0 +1,27 @@
+= jbake docker image
+
+Docker Image for JBake
+
+Uses the official openjdk:8-alpine image to build a version of JBake and openjdk:8-jre-alpine for runtime.
+The jbake submodule is pinned at the latest version tag.
+
+== build
+
+----
+git submodule update
+docker build -t jbake-org/jbake .
+----
+
+== change version
+
+Lets say you want to build a version from master.
+
+----
+cd jbake
+git checkout master
+cd ..
+----
+
+You can now run the build again.
+If the submodule should point to that specific commit add it with `git commit -a`
+
