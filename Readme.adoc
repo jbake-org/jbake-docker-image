@@ -1,0 +1,39 @@
+= Docker Image for JBake
+
+This docker image can usage as wrapped JBake command line tool. 
+Based on the *v2.6.5*
+
+
+== Build
+
+    docker build -t jbake .
+
+== Run
+
+NOTE: Since this is a transparent call of docker image from command line, where new files are generated, it is a good idea to root in docker as a host user, not as a root.
+
+
+  docker run -it -u $(id -u ${USER}):$(id -g ${USER}) -v `pwd`:/work jbake  
+
+
+
+== Integrate into shell as function
+
+Add following code into you shel config file (e.g. ~/.zhsrc, etc.) 
+
+.shell
+[source, bash]
+----
+jbake() {
+    docker run -it -u $(id -u ${USER}):$(id -g ${USER}) -p 8820:8820 -v `pwd`:/work mh/jbake "$@"
+
+}
+----
+
+or execute following code to export jbake as shell function:
+
+    source jbake.env
+
+
+NOTE: Integrated server is functional yet 
+
