@@ -10,7 +10,7 @@ Based on the *v2.6.5*
 
 == Run
 
-NOTE: Since this is a transparent call of docker image from command line, where new files are generated, it is a good idea to root in docker as a host user, not as a root.
+NOTE: Since this is a transparent call of docker image from command line, where new files are generated, so it is a good idea to run docker image as a host user, not as a root.
 
 
   docker run -it -u $(id -u ${USER}):$(id -g ${USER}) -v `pwd`:/work jbake  
@@ -19,13 +19,13 @@ NOTE: Since this is a transparent call of docker image from command line, where 
 
 == Integrate into shell as function
 
-Add following code into you shel config file (e.g. ~/.zhsrc, etc.) 
+Add following code into you shell config file (e.g. ~/.zhsrc, etc.) 
 
 .shell
 [source, bash]
 ----
 jbake() {
-    docker run -it -u $(id -u ${USER}):$(id -g ${USER}) -p 8820:8820 -v `pwd`:/work mh/jbake "$@"
+    docker run -it -u $(id -u ${USER}):$(id -g ${USER}) -p 8820:8820 -v `pwd`:/work jbake "$@"
 
 }
 ----
@@ -35,5 +35,5 @@ or execute following code to export jbake as shell function:
     source jbake.env
 
 
-NOTE: Integrated server is functional yet 
+NOTE: Integrated web server is not functional yet 
 
